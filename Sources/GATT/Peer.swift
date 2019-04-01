@@ -17,17 +17,18 @@ public protocol Peer: Hashable, CustomStringConvertible {
 
 public extension Peer {
     
-    public static func == (lhs: Self, rhs: Self) -> Bool {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         
         return lhs.identifier == rhs.identifier
     }
     
-    public var hashValue: Int {
+    func hash(into hasher: inout Hasher) {
         
-        return identifier.hashValue
+        hasher.combine(identifier)
     }
+
     
-    public var description: String {
+    var description: String {
         
         return identifier.description
     }

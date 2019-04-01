@@ -10,8 +10,8 @@ import Foundation
 import Bluetooth
 import GATT
 
-#if os(macOS) || os(iOS) || os(tvOS) || (os(watchOS) && swift(>=3.2))
-    
+#if (os(macOS) || os(iOS) || os(tvOS) || (os(watchOS) && swift(>=3.2))) && !xcompile
+
 import CoreBluetooth
 
 /// The platform specific peripheral.
@@ -344,6 +344,8 @@ public final class DarwinCentral: NSObject, CentralProtocol, CBCentralManagerDel
             
             // write command (if not blob)
             corePeripheral.writeValue(data, for: coreCharacteristic, type: writeType)
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -659,7 +661,7 @@ public extension DarwinCentral {
     /// Central Peer
     ///
     /// Represents a remote central device that has connected to an app implementing the peripheral role on a local device.
-    public struct Peripheral: Peer {
+    struct Peripheral: Peer {
         
         public let identifier: UUID
         
@@ -672,12 +674,12 @@ public extension DarwinCentral {
 
 public extension DarwinCentral {
     
-    public typealias Error = DarwinCentralError
+    typealias Error = DarwinCentralError
 }
 
 public extension DarwinCentral {
     
-    public struct Options {
+    struct Options {
         
         public let showPowerAlert: Bool
         

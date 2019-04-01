@@ -10,7 +10,7 @@ import Foundation
 import Bluetooth
 import GATT
 
-#if os(macOS) || os(iOS)
+#if (os(macOS) || os(iOS)) && !xcompile
     
 import CoreBluetooth
 import CoreLocation
@@ -390,7 +390,7 @@ public extension DarwinPeripheral {
     /// Peripheral Peer
     ///
     /// Represents a remote peripheral device that has been discovered.
-    public struct Central: Peer {
+    struct Central: Peer {
         
         public let identifier: UUID
         
@@ -403,7 +403,7 @@ public extension DarwinPeripheral {
 
 public extension DarwinPeripheral {
     
-    public struct Options {
+    struct Options {
         
         public let showPowerAlert: Bool
         
@@ -433,7 +433,7 @@ public extension DarwinPeripheral {
         }
     }
     
-    public struct AdvertisingOptions {
+    struct AdvertisingOptions {
         
         /// The local name of the peripheral.
         public let localName: String?
@@ -564,7 +564,7 @@ private extension DarwinPeripheral {
             (coreService.characteristics as? [CBMutableCharacteristic])?.forEach { characteristics[$0] = nil }
             
             // remove characteristics
-            while let index = characteristics.index(where: { $0.value.serviceHandle == handle }) {
+            while let index = characteristics.firstIndex(where: { $0.value.serviceHandle == handle }) {
                 
                 characteristics.remove(at: index)
             }

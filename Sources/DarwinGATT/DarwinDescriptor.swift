@@ -9,7 +9,7 @@
 import Foundation
 import Bluetooth
 
-#if os(macOS) || os(iOS)
+#if (os(macOS) || os(iOS)) && !xcompile
 
 import CoreBluetooth
 

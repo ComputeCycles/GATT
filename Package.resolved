@@ -3,10 +3,19 @@
     "pins": [
       {
         "package": "Bluetooth",
-        "repositoryURL": "https://github.com/PureSwift/Bluetooth.git",
+        "repositoryURL": "https://github.com/ComputeCycles/Bluetooth",
         "state": {
-          "branch": "master",
-          "revision": "a14044af24f9e7344af3dc1f65fec46bb01e8246",
+          "branch": "swift5",
+          "revision": "b58c1f49d9fc83cdc421d2896101250fb0e800a3",
+          "version": null
+        }
+      },
+      {
+        "package": "BluetoothDarwin",
+        "repositoryURL": "https://github.com/ComputeCycles/BluetoothDarwin",
+        "state": {
+          "branch": "swift5",
+          "revision": "cc3b537fd861f2eb02a85ee8174a34f85723f64d",
           "version": null
         }
       }

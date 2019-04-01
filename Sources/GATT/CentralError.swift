@@ -65,7 +65,7 @@ extension CentralError: CustomNSError {
             
         case let .invalidAttribute(uuid):
             
-            #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+            #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS)) && !xcompile
             let description = String(format: NSLocalizedString("Invalid attribute %@.", comment: "org.pureswift.GATT.CentralError.invalidAttribute"), uuid.description)
             #else
             let description = "Invalid attribute \(uuid)"
